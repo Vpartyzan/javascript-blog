@@ -6,7 +6,7 @@
 }
 
 body {
-  background: #fff;
+  background: #e7dede;
   font-family: "Source Sans Pro", sans-serif;
   color: #444;
   font-weight: 300;
@@ -45,15 +45,17 @@ body {
 }
 
 .posts {
+  position: relative;
+  box-shadow: 0 2px 20px 0px grey;
+  background-color: #d6beab;
   -ms-flex: 2 0 0px;
       flex: 2 0 0;
 }
 
 .sidebar, .posts {
-  background: #fff;
   margin-right: 10px;
   padding: 40px;
-  border: 1px solid #444;
+  border: 0px solid #444;
   border-radius: 5px;
 }
 
@@ -64,6 +66,8 @@ body {
   font-size: 104px;
   line-height: 1;
   text-align: center;
+  margin-top: 10px;
+  margin-bottom: 40px;
 }
 
 /* Lists */
@@ -77,6 +81,10 @@ body {
   font-weight: bold;
 }
 
+.list a {
+  text-decoration: none;
+}
+
 .list-horizontal li {
   display: inline-block;
 }
@@ -88,11 +96,17 @@ body {
 
 /* Post */
 .post {
-  display: none;
+  display: block;
+  position: absolute;
+  opacity: 0;
+  z-index: 1;
+  transition-property: opacity;
+  transition-duration: 1.5s;
 }
 
 .post.active {
-  display: block;
+  opacity: 1;
+  z-index: 2;
 }
 
 .post-author {
