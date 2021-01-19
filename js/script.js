@@ -31,7 +31,7 @@ const titleClickHandler = function(event){
   /* [DONE] add class 'active' to the correct article */
   targetArticle.classList.add('active');
 
-}
+};
 
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
@@ -61,7 +61,7 @@ function generateTitleLinks(){
     const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
     
     /* [DONE] insert link into titleList */
-    titleList.insertAdjacentHTML("beforeend", linkHTML);
+    titleList.insertAdjacentHTML('beforeend', linkHTML);
   }
 
   const links = document.querySelectorAll('.titles a');
