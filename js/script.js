@@ -36,7 +36,8 @@ const titleClickHandler = function(event){
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list';
+  optArticleTagsSelector = '.post-tags .list',
+  optArticleAuthorSelector = '.post-author';
 
 function generateTitleLinks(customSelector = ''){
   const titleList = document.querySelector(optTitleListSelector);
@@ -49,7 +50,7 @@ function generateTitleLinks(customSelector = ''){
   }
 
   /* [DONE] for each article */
-  const articles = document.querySelectorAll(optArticleSelector + customSelector);  
+  const articles = document.querySelectorAll(optArticleSelector + customSelector); 
 
   for (let article of articles) {
     /* [DONE] get the article id */
@@ -78,7 +79,7 @@ generateTitleLinks();
 function generateTags(){  
   /* [DONE] find all articles */
   const articles = document.querySelectorAll(optArticleSelector);  
-
+  
   /* [DONE] START LOOP: for every article: */
   for (let article of articles) {
     
@@ -149,15 +150,29 @@ function tagClickHandler(event){
 }
 
 function addClickListenersToTags(){
-  /* find all links to tags */
+  /* [DONE] find all links to tags */
   const tagLinks = document.querySelectorAll('a[href^="#tag-"');
 
-  /* START LOOP: for each link */
+  /* [DONE] START LOOP: for each link */
   for (let tagLink of tagLinks) {
-    /* add tagClickHandler as event listener for that link */
+    /* [DONE] add tagClickHandler as event listener for that link */
     tagLink.addEventListener('click', tagClickHandler);
-  /* END LOOP: for each link */
+  /* [DONE] END LOOP: for each link */
   }
 }
 
 addClickListenersToTags();
+
+const generateAuthors = () => {
+  const articles = document.querySelectorAll(optArticleSelector);  
+
+  for (let article of articles) {
+    const articleAuthor = article.querySelector(optArticleAuthorSelector),   
+      authorsArray = article.getAttribute('data-author'),    
+      linkHTML = '<a href="#">' + authorsArray + '</a>';
+
+    articleAuthor.insertAdjacentHTML('beforeend', linkHTML);    
+  }  
+};
+
+generateAuthors();
