@@ -50,6 +50,7 @@ body {
   background-color: #d6beab;
   -ms-flex: 2 0 0px;
       flex: 2 0 0;
+  height: 620px;
 }
 
 .sidebar, .posts {
