@@ -7,7 +7,8 @@ const optArticleSelector = '.post',
   optArticleAuthorSelector = '.post-author',
   optTagsListSelector = '.tags.list',
   optCloudClassCount = 5,
-  optCloudClassPrefix = 'tag-size-';
+  optCloudClassPrefix = 'tag-size-',
+  optAuthorListSelector = '.authors';
 
 const titleClickHandler = function(event){
   event.preventDefault();
@@ -208,27 +209,44 @@ function tagClickHandler(event){
 
 function addClickListenersToTags(){
   /* [DONE] find all links to tags */
-  const tagLinks = document.querySelectorAll('a[href^="#tag-"');
+  const tagLinks = document.querySelectorAll('a[href^="#tag-"');  
   
   /* [DONE] START LOOP: for each link */
   for (let tagLink of tagLinks) {
     /* [DONE] add tagClickHandler as event listener for that link */
     tagLink.addEventListener('click', tagClickHandler);
   /* [DONE] END LOOP: for each link */
-  }
+  }  
 }
 
 addClickListenersToTags();
 
 function generateAuthors () {
+  let allAuthorLinks = {};
+
   const articles = document.querySelectorAll(optArticleSelector);  
 
   for (let article of articles) {
-    const articleAuthor = article.querySelector(optArticleAuthorSelector),   
-      authors = article.getAttribute('data-author'),    
-      linkHTML = '<a href="#author-'+ authors + '">' + authors + '</a>';
+    const articleAuthor = article.querySelector(optArticleAuthorSelector),        
+      authors = article.getAttribute('data-author'),
+      authorTags = authors.split(' ').join('-').split(' '),    
+      linkHTML = '<a href="#author-'+ authors + '">' + authors + '</a>';      
     
-    articleAuthor.insertAdjacentHTML('beforeend', linkHTML);    
+    for (let authorTag of authorTags ) {
+      const authorName = authorTag.split('-').join(' ');      
+
+      (!allAuthorLinks[authorName]) ? allAuthorLinks[authorName] = 1 : allAuthorLinks[authorName]++;
+    }    
+
+    articleAuthor.insertAdjacentHTML('beforeend', linkHTML);        
+  } 
+
+  const authorLinks = document.querySelector(optAuthorListSelector);
+
+  for (let authorLink in allAuthorLinks) {
+    const linkAuthorHTML = '<li><a href="#author-'+ authorLink + '">' + authorLink + ' (' + allAuthorLinks[authorLink] + ') ' + '</a></li>';
+      
+    authorLinks.insertAdjacentHTML('beforeend', linkAuthorHTML);
   }  
 }
 
