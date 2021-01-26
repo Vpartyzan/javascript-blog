@@ -135,3 +135,34 @@ body {
     padding-right: 5px;
   }
 }
+
+/*list tags */
+
+.tag-size-1 {
+  font-size: 100%;
+  color: green;
+}
+
+.tag-size-2 {
+  font-size: 125%;
+  color: red;
+}
+
+.tag-size-3 {
+  font-size: 150%;
+  color: orange;
+}
+
+.tag-size-4 {
+  font-size: 200%;
+  color: blueviolet;
+}
+
+.tag-size-5 {
+  font-size: 250%;
+  color: blue;
+}
+
+.list.tags li {
+  display: inline-block;
+}
